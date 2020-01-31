@@ -1,3 +1,3 @@
-# boundless-squad
+# The Boundless Squad
 
-This is the Arudino project
+## Vibrating Pillow
