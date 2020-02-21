@@ -4,9 +4,9 @@
 std::ifstream config_file("config.json", std::ifstream::binary);
 config_file >> config;
 
-float minutes = cout<<config["minutes"];
+float minutes = config["minutes"];
 float seconds = minutes * 60;
-int pinNumber = cout<<config["pin"];
+int pinNumber = config["pin"];
 
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
