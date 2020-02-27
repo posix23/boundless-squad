@@ -1,17 +1,15 @@
-#include <json/value.h>
-#include <fstream>
-
-std::ifstream config_file("config.json", std::ifstream::binary);
-config_file >> config;
-
-float minutes = config["minutes"];
-float seconds = minutes * 60;
-int pinNumber = config["pin"];
+float minutes = 0.5;
+float seconds = 10; //minutes * 60;
+int pinNumber = 11;
+int pinNumber2 = 5;
+int pinNumber3 = 9;
+int pinNumber4 = 10;
 
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
-
+  Serial.begin(9600);
+  Serial.println("Hi");
   // a1.attach(9);
 }
 
@@ -19,10 +17,12 @@ void setup() {
 void loop() {
   if (minutesToSeconds()) {
     analogWrite(pinNumber, 200);
+    analogWrite(pinNumber2, 200);
+    analogWrite(pinNumber3, 200);
+    analogWrite(pinNumber4, 200);
     delay(1000);
   } else {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
-    break;
+    Serial.println("Stop");
   }
 }
 
@@ -35,9 +35,9 @@ bool minutesToSeconds() {
     return false;
   }
   seconds--;
+  Serial.println(seconds);
   if (seconds < 0) {
     seconds = 0;
   }
-
   return true;
 }
