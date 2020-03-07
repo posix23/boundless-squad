@@ -1,13 +1,9 @@
-/** Intended for Arduino Uno R3
- * Boundless Squad
- */
-
-float seconds = 10 + 1;
+float minutes = 0.5;
+float seconds = 10 + 1; //minutes * 60;
 int pinNumber = 11;
 int pinNumber2 = 5;
 int pinNumber3 = 9;
 int pinNumber4 = 10;
-int state = 0;
 
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
@@ -18,29 +14,20 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  if (Serial.available() > 0) {
-    state = Serial.read();
-  }
-  // If second is 0, then the motors will stop
-  if (state == 0) {
-    if (minutesToSeconds())
-    {
-      analogWrite(pinNumber, 200);
-      analogWrite(pinNumber2, 200);
-      analogWrite(pinNumber3, 200);
-      analogWrite(pinNumber4, 200);
-      delay(1000);
-    }
-    else
-    {
-      Serial.println("Stop");
+  if (minutesToSeconds()) {
+    analogWrite(pinNumber, 200);
+    analogWrite(pinNumber2, 200);
+    analogWrite(pinNumber3, 200);
+    analogWrite(pinNumber4, 200);
+    delay(1000);
+  } else {
+    Serial.println("Stop");
+    while (true) {
       analogWrite(pinNumber, 0);
       analogWrite(pinNumber2, 0);
       analogWrite(pinNumber3, 0);
       analogWrite(pinNumber4, 0);
     }
-  } else {
-    Serial.println("Waiting for the green!");
   }
 }
 
@@ -49,14 +36,13 @@ void loop() {
  * @return {boolean} - True if the time is still on
  */
 bool minutesToSeconds() {
-  if (seconds < 0) {
-    seconds = 0;
-  }
   if (seconds == 0) {
     return false;
   }
   seconds--;
   Serial.println(seconds);
-  
+  if (seconds < 0) {
+    seconds = 0;
+  }
   return true;
 }
