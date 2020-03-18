@@ -31,9 +31,9 @@ void loop() {
   // If there is data coming from the bluetooth module, then the motors will vibrate
   while (Serial.available() > 0) {
       Serial.println("Start");
-      Serial.flush(); //you might need to see if this is working,  
-                      //otherwise you can do a Serial.read() too
+      Serial.flush();
       runMotors(200);
+      delay(200);
       Serial.println("Stop");
       runMotors(0);
   }
