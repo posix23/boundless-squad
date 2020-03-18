@@ -25,16 +25,15 @@ void runMotors(int freq){
 
 // the loop function runs over and over again forever
 void loop() {
-  Serial.println(Serial.read());
-  runMotors(0);
-  // If there is data coming from the bluetooth module, then the motors will vibrate
+  //Serial.println(Serial.read());
+  // If second is 0, then the motors will stop
   if (Serial.available() > 0) {
       Serial.println("Start");
       Serial.flush();
       runMotors(200);
   } else {
-    delay(200);
-    Serial.println("Stop");
-    runMotors(0);
+      Serial.println("Waiting for the green!");
+      //seconds = 10;
+      runMotors(0);
   }
 }
