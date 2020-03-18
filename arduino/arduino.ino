@@ -1,7 +1,6 @@
 // Intended for Arduino Uno R3
 // Boundless Squad
 
-int seconds = 10;
 int pinNumber = 11;
 int pinNumber2 = 5;
 int pinNumber3 = 9;
