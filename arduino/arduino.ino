@@ -7,7 +7,6 @@ int pinNumber3 = 9;
 int pinNumber4 = 10;
 
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
   pinMode(pinNumber, OUTPUT);
   pinMode(pinNumber2, OUTPUT);
   pinMode(pinNumber3, OUTPUT);
